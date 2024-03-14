@@ -60,6 +60,12 @@ export default function Login() {
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             />
+             <Button type="submit" variant="contained" color="primary" fullWidth>
+              Login
+            </Button>
+             <Typography variant="h6" color="text.secondary" align="center" gutterBottom>
+          or
+        </Typography>
             <Button type="submit" variant="contained" color="primary" fullWidth>
               Login with Google
             </Button>

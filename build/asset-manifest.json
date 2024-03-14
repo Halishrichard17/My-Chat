@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b7840e97.css",
+    "main.js": "/static/js/main.1ab0144d.js",
+    "static/js/453.c8004ade.chunk.js": "/static/js/453.c8004ade.chunk.js",
+    "static/media/Lavender.jpg": "/static/media/Lavender.34c30dbfa08df7e649cd.jpg",
+    "index.html": "/index.html",
+    "main.b7840e97.css.map": "/static/css/main.b7840e97.css.map",
+    "main.1ab0144d.js.map": "/static/js/main.1ab0144d.js.map",
+    "453.c8004ade.chunk.js.map": "/static/js/453.c8004ade.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b7840e97.css",
+    "static/js/main.1ab0144d.js"
+  ]
+}

@@ -36,6 +36,7 @@ import { DrawerWithNav } from './components/DrawerWithNav';
 import moment from 'moment';
 import './chat.css';
 import { useDrawer } from '../../context/drawerContext';
+import CryptoJS from 'crypto-js';
 
 const drawerWidth = 240;
 
@@ -133,6 +134,8 @@ export const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
+const SECRET_KEY = 'YourSecretKeyHere';
+
 export default function Chat() {
   const [roomId, setRoomId] = React.useState('');
   const [selectedPerson, setSelectedPerson] = React.useState([]);
@@ -153,9 +156,11 @@ export default function Chat() {
       query(collection(db, 'chats', roomId, 'messages'), orderBy('time', 'asc')),
       (querySnapshot) => {
         const messages = querySnapshot.docs.map((doc) => {
+          const decryptedMsg = CryptoJS.AES.decrypt(doc.data().message, SECRET_KEY).toString(CryptoJS.enc.Utf8);
           return {
             id: doc.id,
             ...doc.data(),
+            message: decryptedMsg,
           };
         });
         setMessages(messages);
@@ -223,9 +228,10 @@ export default function Chat() {
     const msg = message.trim();
     // setUsers();
     if (msg) {
+      const encryptedMsg = CryptoJS.AES.encrypt(msg, SECRET_KEY).toString();
       const msgObj = {
         time: Timestamp.now(),
-        message: msg,
+        message: encryptedMsg,
         sender: user.uid,
         receiver: selectedPerson.data.uid,
       };
